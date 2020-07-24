@@ -8,7 +8,7 @@ namespace Microsoft.ServiceFabric.Common.Utilities
     using System;
     using System.Threading.Tasks;
 
-    internal class ConcurrentOperationsRunner<T>
+    public class ConcurrentOperationsRunner<T>
     {
         private readonly Func<T, Task> runOperation;
         private readonly TryGetNextOperationParameters tryGetNextOperationParameters;

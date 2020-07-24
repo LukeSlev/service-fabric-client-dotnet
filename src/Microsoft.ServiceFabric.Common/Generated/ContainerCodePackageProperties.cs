@@ -156,7 +156,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets runtime information of a container instance.
         /// </summary>
-        public ContainerInstanceView InstanceView { get; internal set; }
+        public ContainerInstanceView InstanceView { get; set; }
 
         /// <summary>
         /// Gets an array of liveness probes for a code package. It determines when to restart a code package.

@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Client
     /// <summary>
     /// Class to verify the remote Secure Sockets Layer (SSL) certificate used for authentication.
     /// </summary>
-    internal class ServerCertificateValidator
+    public class ServerCertificateValidator
     {
         /// <summary>
         /// Protects upgrading the remoteX509SecuritySettings while Cert Validation callback is in progress.

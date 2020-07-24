@@ -1,0 +1,120 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12A9CF3E-F55F-4D87-9BFF-B5B749541F6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>Microsoft.ServiceFabric.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Microsoft.ServiceFabric.Client</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>windows.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ClientSettings.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DstsTokenHelper.cs" />
+    <Compile Include="Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Exceptions\ServiceFabricRequestException.cs" />
+    <Compile Include="Extensions\IClusterClient.cs" />
+    <Compile Include="Extensions\IImageStoreClient.cs" />
+    <Compile Include="Extensions\IMeshApplicationsClient.cs" />
+    <Compile Include="Extensions\IMeshGatewaysClient.cs" />
+    <Compile Include="Extensions\IMeshNetworksClient.cs" />
+    <Compile Include="Extensions\IMeshSecretsClient.cs" />
+    <Compile Include="Extensions\IMeshSecretValuesClient.cs" />
+    <Compile Include="Extensions\IMeshVolumesClient.cs" />
+    <Compile Include="Extensions\IPropertyManagementClient_.cs" />
+    <Compile Include="Generated\IApplicationClient.cs" />
+    <Compile Include="Generated\IApplicationTypeClient.cs" />
+    <Compile Include="Generated\IBackupRestoreClient.cs" />
+    <Compile Include="Generated\IChaosClient.cs" />
+    <Compile Include="Generated\IClusterClient.cs" />
+    <Compile Include="Generated\ICodePackageClient.cs" />
+    <Compile Include="Generated\IComposeDeploymentClient.cs" />
+    <Compile Include="Generated\IEventsStoreClient.cs" />
+    <Compile Include="Generated\IFaultsClient.cs" />
+    <Compile Include="Generated\IImageStoreClient.cs" />
+    <Compile Include="Generated\IInfrastructureClient.cs" />
+    <Compile Include="Generated\IMeshApplicationsClient.cs" />
+    <Compile Include="Generated\IMeshCodePackagesClient.cs" />
+    <Compile Include="Generated\IMeshGatewaysClient.cs" />
+    <Compile Include="Generated\IMeshNetworksClient.cs" />
+    <Compile Include="Generated\IMeshSecretsClient.cs" />
+    <Compile Include="Generated\IMeshSecretValuesClient.cs" />
+    <Compile Include="Generated\IMeshServiceReplicasClient.cs" />
+    <Compile Include="Generated\IMeshServicesClient.cs" />
+    <Compile Include="Generated\IMeshVolumesClient.cs" />
+    <Compile Include="Generated\INodeClient.cs" />
+    <Compile Include="Generated\IPartitionClient.cs" />
+    <Compile Include="Generated\IPropertyManagementClient.cs" />
+    <Compile Include="Generated\IRepairManagementClient.cs" />
+    <Compile Include="Generated\IReplicaClient.cs" />
+    <Compile Include="Generated\IServiceClient.cs" />
+    <Compile Include="Generated\IServicePackageClient.cs" />
+    <Compile Include="Generated\IServiceTypeClient.cs" />
+    <Compile Include="IServiceFabricClient.cs" />
+    <Compile Include="Resources\SR.Designer.cs" />
+    <Compile Include="ServerCertificateValidator.cs" />
+    <Compile Include="ServiceFabricClient.cs" />
+    <Compile Include="ServiceFabricClientBuilder.cs" />
+    <Compile Include="_friend.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.ServiceFabric.Common\Microsoft.ServiceFabric.Common.FX.csproj">
+      <Project>{20b9dc67-a115-4309-b061-e9ec90bc446f}</Project>
+      <Name>Microsoft.ServiceFabric.Common.FX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="windows.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

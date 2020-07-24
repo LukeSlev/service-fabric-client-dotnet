@@ -51,7 +51,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Using this Container, allows this assembly from not needing the extra references required by client implementations.
         /// eg: ServiceFabricHttpClient may need extra instaces like HjttpClientHandler and DelegatingHandler.
         /// </summary>
-        internal Dictionary<Type, object> Container { get; } = new Dictionary<Type, object>();
+        public Dictionary<Type, object> Container { get; } = new Dictionary<Type, object>();
 
         /// <summary>
         /// Builds an <see cref="IServiceFabricClient"/> to perform operations against a Service Fabric cluster.

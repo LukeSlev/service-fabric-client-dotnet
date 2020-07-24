@@ -24,5 +24,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates the intent is for the node to remove data. The value is 3.
         /// </summary>
         RemoveData,
+
+        /// <summary>
+        /// Indicates the intent is for the node to be removed. The value is 4.
+        /// </summary>
+        RemoveNode,
     }
 }

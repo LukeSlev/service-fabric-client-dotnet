@@ -38,11 +38,11 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// Status of the resource.
         /// </summary>
-        public ResourceStatus? Status { get; internal set; }
+        public ResourceStatus? Status { get; set; }
 
         /// <summary>
         /// Gets additional information about the current status of the network.
         /// </summary>
-        public string StatusDetails { get; internal set; }
+        public string StatusDetails { get; set; }
     }
 }

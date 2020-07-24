@@ -66,16 +66,16 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
         /// 'Failed'
         /// </summary>
-        public ResourceStatus? Status { get; internal set; }
+        public ResourceStatus? Status { get; set; }
 
         /// <summary>
         /// Gets additional information about the current status of the gateway.
         /// </summary>
-        public string StatusDetails { get; internal set; }
+        public string StatusDetails { get; set; }
 
         /// <summary>
         /// Gets IP address of the gateway. This is populated in the response and is ignored for incoming requests.
         /// </summary>
-        public string IpAddress { get; internal set; }
+        public string IpAddress { get; set; }
     }
 }

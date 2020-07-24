@@ -64,12 +64,12 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// Status of the resource.
         /// </summary>
-        public ResourceStatus? Status { get; internal set; }
+        public ResourceStatus? Status { get; set; }
 
         /// <summary>
         /// Gets additional information about the current status of the service.
         /// </summary>
-        public string StatusDetails { get; internal set; }
+        public string StatusDetails { get; set; }
 
         /// <summary>
         /// Gets the health state of an application resource. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error',
@@ -77,13 +77,13 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
         /// </summary>
-        public HealthState? HealthState { get; internal set; }
+        public HealthState? HealthState { get; set; }
 
         /// <summary>
         /// Gets when the service's health state is not 'Ok', this additional details from service fabric Health Manager for
         /// the user to know why the service is marked unhealthy.
         /// </summary>
-        public string UnhealthyEvaluation { get; internal set; }
+        public string UnhealthyEvaluation { get; set; }
 
         /// <summary>
         /// Gets the service identity list.

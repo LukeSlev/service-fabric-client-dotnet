@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------
+// ------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
@@ -12,14 +12,14 @@ namespace Microsoft.ServiceFabric.Common.Utilities
     /// <summary>
     /// Utility and extension methods for file operations.
     /// </summary>
-    internal static class FileUtilities
+    public static class FileUtilities
     {
         /// <summary>
         /// Gets absolute path.
         /// </summary>
         /// <param name="path">Path to get absolute path for.</param>
         /// <returns>Absolute path for <paramref name="path"/>.</returns>
-        internal static string GetAbsolutePath(string path)
+        public static string GetAbsolutePath(string path)
         {
             if (!Path.IsPathRooted(path))
             {
@@ -38,12 +38,14 @@ namespace Microsoft.ServiceFabric.Common.Utilities
         {
             // TODO: It must be handled by default in .net4.6.2 and .net core 2.0
             // handle long paths for windows
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !absolutePath.StartsWith(@"\\?\"))
-            {
-                absolutePath = @"\\?\" + absolutePath;
-            }
+            //if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && !absolutePath.StartsWith(@"\\?\"))
+            //{
+            //    absolutePath = @"\\?\" + absolutePath;
+            //}
 
-            return absolutePath;
+            //return absolutePath;
+
+            return absolutePath.StartsWith(@"\\?\") ? absolutePath : @"\\?\" + absolutePath;
         }
     }
 }

@@ -40,12 +40,12 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
         /// 'Failed'
         /// </summary>
-        public ResourceStatus? Status { get; internal set; }
+        public ResourceStatus? Status { get; set; }
 
         /// <summary>
         /// Gets additional information about the current status of the secret.
         /// </summary>
-        public string StatusDetails { get; internal set; }
+        public string StatusDetails { get; set; }
 
         /// <summary>
         /// Gets the type of the content stored in the secret value. The value of this property is opaque to Service Fabric.

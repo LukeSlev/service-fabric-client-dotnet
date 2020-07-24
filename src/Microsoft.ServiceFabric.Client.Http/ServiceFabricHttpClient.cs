@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.ClientId = Guid.NewGuid().ToString();
 
             // Get information from DI container in ServiceFabricClientBuilder
-            this.innerHandler = new HttpClientHandler();
+            this.innerHandler = new WebRequestHandler();
             if (builder.Container.ContainsKey(typeof(HttpClientHandler)))
             {
                 this.innerHandler = (HttpClientHandler)builder.Container[typeof(HttpClientHandler)];
@@ -119,14 +119,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             {
                 // Append OS platform.
                 var osPlatformAppend = "-Windows";
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    osPlatformAppend = "-Linux";
-                }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                {
-                    osPlatformAppend = "-OSX";
-                }
+                //if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                //{
+                //    osPlatformAppend = "-Linux";
+                //}
+                //else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                //{
+                //    osPlatformAppend = "-OSX";
+                //}
 
                 this.clientTypeHeaderValue = value + osPlatformAppend;
             }

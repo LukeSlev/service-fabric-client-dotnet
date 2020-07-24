@@ -5,6 +5,7 @@
 
 namespace Microsoft.ServiceFabric.Client.Http
 {
+    using System;
     using System.Net.Security;
     using System.Security.Authentication;
     using System.Security.Cryptography.X509Certificates;
@@ -55,6 +56,44 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return result;
-        }        
+        }
+
+        /// <summary>
+        /// Callback to Verify the remote Secure Sockets Layer (SSL) certificate used for authentication.
+        /// </summary>
+        /// <param name="sender">An object that contains state information for this validation.</param>
+        /// <param name="cert">The certificate used to authenticate the remote party.</param>
+        /// <param name="chain">The chain of certificate authorities associated with the remote certificate.</param>
+        /// <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
+        /// <returns>
+        /// A <see cref="bool"/> value that determines whether the specified certificate is accepted for authentication.
+        /// </returns>
+        public bool ValidateServerCertificate1(
+            object sender,
+            X509Certificate cert,
+            X509Chain chain,
+            SslPolicyErrors sslPolicyErrors)
+        {
+            var cert1 = cert as X509Certificate2;
+            if (cert1 == null)
+            {
+                throw new AuthenticationException("Invalid certificate object: " + cert);
+            }
+
+            var result = this.ValidateCertificate(
+                sender,
+                cert1,
+                chain,
+                sslPolicyErrors);
+
+            // If remote server cert validation fails, HttpClient throws HttpRequestException which has different exception information on full dotnet framework
+            // and dotnet core, so throw AuthenticationException which allows ServiceFabricHttpClient to detect it and make decisions.
+            if (!result)
+            {
+                throw new AuthenticationException("Server Cert validation failed");
+            }
+
+            return result;
+        }
     }
 }

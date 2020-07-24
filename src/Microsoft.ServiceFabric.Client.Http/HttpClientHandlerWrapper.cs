@@ -60,21 +60,37 @@ namespace Microsoft.ServiceFabric.Client.Http
 
                 // If remote server cert validation fails, HttpClient throws HttpRequestException which has different exception information on full dotnet framework
                 // and dotnet core, so ServerCertificateValidatorHttpWrapper.ValidateServerCertificate throws AuthenticationException which allows ServiceFabricHttpClient to detect it and make decisions.
-                this.httpClientHandler.ServerCertificateCustomValidationCallback = this.serverCertValidator.ValidateServerCertificate;
+
+                //this.httpClientHandler.ServerCertificateCustomValidationCallback = this.serverCertValidator.ValidateServerCertificate;
+                if (this.httpClientHandler is WebRequestHandler)
+                {
+                    ((WebRequestHandler)this.httpClientHandler).ServerCertificateValidationCallback = this.serverCertValidator.ValidateServerCertificate1;
+                }
             }
             else if (settings.SecurityType == SecurityType.X509)
             {
                 var x509Settings = settings as X509SecuritySettings;
-                if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
-                {
-                    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
-                }
-
                 this.serverCertValidator = new ServerCertificateValidatorHttpWrapper(x509Settings.RemoteX509SecuritySettings);
 
                 // If remote server cert validation fails, HttpClient throws HttpRequestException which has different exception information on full dotnet framework
                 // and dotnet core, so ServerCertificateValidatorHttpWrapper.ValidateServerCertificate throws AuthenticationException which allows ServiceFabricHttpClient to detect it and make decisions.
-                this.httpClientHandler.ServerCertificateCustomValidationCallback = this.serverCertValidator.ValidateServerCertificate;
+                if (this.httpClientHandler is WebRequestHandler)
+                {
+                    var requestHandler = (WebRequestHandler)this.httpClientHandler;
+                    if (!requestHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+                    {
+                        requestHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                    }
+
+                    requestHandler.ServerCertificateValidationCallback = this.serverCertValidator.ValidateServerCertificate1;
+                }
+
+                //if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+                //{
+                //    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                //}
+
+                //this.httpClientHandler.ServerCertificateCustomValidationCallback = this.serverCertValidator.ValidateServerCertificate;
             }
             else if (settings.SecurityType == SecurityType.Windows)
             {
@@ -116,11 +132,19 @@ namespace Microsoft.ServiceFabric.Client.Http
             {
                 // Add new client cert and update RemoteX509SecuritySettings for cert validator.
                 var x509Settings = settings as X509SecuritySettings;
-                this.httpClientHandler.ClientCertificates.Clear();
-                if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+
+                if (this.httpClientHandler is WebRequestHandler)
                 {
-                    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                    var requestHandler = (WebRequestHandler)this.httpClientHandler;
+                    requestHandler.ClientCertificates.Clear();
+                    requestHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
                 }
+
+                //this.httpClientHandler.ClientCertificates.Clear();
+                //if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+                //{
+                //    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                //}
 
                 this.serverCertValidator.UpdateSecuritySettings(x509Settings.RemoteX509SecuritySettings);
             }
