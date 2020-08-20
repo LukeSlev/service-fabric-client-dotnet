@@ -164,7 +164,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The payload of the GET response.</returns>
         /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
-        internal async Task SendAsync(
+        public async Task<HttpResponseMessage> SendAsync(
             Func<HttpRequestMessage> requestFunc,
             string relativeUri,
             string requestId,
@@ -174,7 +174,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var endpoint = this.randomizedEndpoints.GetElement();
             var requestUri = new Uri(endpoint, relativeUri);
             var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
-            await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
+            return await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
         }
 
         /// <summary>
