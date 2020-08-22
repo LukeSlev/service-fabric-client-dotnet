@@ -178,6 +178,55 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
+        /// Sends an HTTP request to cluster http gateway endpoints, retry on other endpoints if the request fails.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">The relative URI.</param>
+        /// <param name="requestId">Request Id for corelation</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        public async Task<HttpResponseMessage> SendAsyncRetryAllEndpoints(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            string requestId,
+            CancellationToken cancellationToken)
+        {
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+
+            for (int i = 0; i < this.ClusterEndpoints.Count; i++)
+            {
+                var request = requestFunc.Invoke();
+                request.RequestUri = new Uri(this.ClusterEndpoints[i], relativeUri);
+
+                // Add claims token to request if needed.
+                this.bearerTokenHandler.AddTokenToRequest(request);
+
+                // Add client request id to header for corelation on server.
+                request.Headers.Add(Constants.ServiceFabricHttpRequestIdHeaderName, clientRequestId);
+                request.Headers.Add(Constants.ServiceFabricHttpClientTypeHeaderName, this.ClientTypeHeaderValue);
+
+                try
+                {
+                    ServiceFabricHttpClientEventSource.Current.Send($"{clientRequestId}", $"{request.Method.Method} Request Url: {request.RequestUri}");
+                    return await this.httpClient.SendAsync(request, cancellationToken);
+                }
+                catch (HttpRequestException ex)
+                {
+                    ServiceFabricHttpClientEventSource.Current.ErrorResponse(clientRequestId, ex.ToString());
+                    if (i >= this.ClusterEndpoints.Count - 1)
+                    {
+                        throw;
+                    }
+                }
+
+                await Task.Delay(new TimeSpan((long)(this.rand.NextDouble() * this.maxRetryInterval.Ticks)), cancellationToken);
+            }
+
+            throw new InvalidOperationException(SR.ErrorUnableToBeginRequest);
+        }
+
+        /// <summary>
         /// Sends an HTTP get request to cluster http gateway and returns the result as raw json.
         /// </summary>
         /// <param name="requestFunc">Func to create HttpRequest to send.</param>
