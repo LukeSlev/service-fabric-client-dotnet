@@ -78,6 +78,7 @@
     <Compile Include="Generated\ApplicationHealthPolicies.cs" />
     <Compile Include="Generated\ApplicationHealthPolicy.cs" />
     <Compile Include="Generated\ApplicationHealthPolicyMapItem.cs" />
+    <Compile Include="Generated\ApplicationHealthPolicyMapObject.cs" />
     <Compile Include="Generated\ApplicationHealthReportExpiredEvent.cs" />
     <Compile Include="Generated\ApplicationHealthState.cs" />
     <Compile Include="Generated\ApplicationHealthStateChunk.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="Generated\DisableBackupDescription.cs" />
     <Compile Include="Generated\DiskInfo.cs" />
     <Compile Include="Generated\DoublePropertyValue.cs" />
+    <Compile Include="Generated\DsmsAzureBlobBackupStorageDescription.cs" />
     <Compile Include="Generated\EnableBackupDescription.cs" />
     <Compile Include="Generated\EndpointProperties.cs" />
     <Compile Include="Generated\EndpointRef.cs" />
@@ -343,6 +345,7 @@
     <Compile Include="Generated\LocalNetworkResourceProperties.cs" />
     <Compile Include="Generated\ManagedApplicationIdentity.cs" />
     <Compile Include="Generated\ManagedApplicationIdentityDescription.cs" />
+    <Compile Include="Generated\MetricLoadDescription.cs" />
     <Compile Include="Generated\MonitoringPolicyDescription.cs" />
     <Compile Include="Generated\MoveCost.cs" />
     <Compile Include="Generated\NamedPartitionInformation.cs" />
@@ -415,6 +418,7 @@
     <Compile Include="Generated\PartitionInformation.cs" />
     <Compile Include="Generated\PartitionInstanceCountScaleMechanism.cs" />
     <Compile Include="Generated\PartitionLoadInformation.cs" />
+    <Compile Include="Generated\PartitionMetricLoadDescription.cs" />
     <Compile Include="Generated\PartitionNewHealthReportEvent.cs" />
     <Compile Include="Generated\PartitionPrimaryMoveAnalysisEvent.cs" />
     <Compile Include="Generated\PartitionQuorumLossProgress.cs" />
@@ -476,6 +480,7 @@
     <Compile Include="Generated\ReplicaHealthStateFilter.cs" />
     <Compile Include="Generated\ReplicaInfo.cs" />
     <Compile Include="Generated\ReplicaKind.cs" />
+    <Compile Include="Generated\ReplicaMetricLoadDescription.cs" />
     <Compile Include="Generated\ReplicaRole.cs" />
     <Compile Include="Generated\ReplicasHealthEvaluation.cs" />
     <Compile Include="Generated\ReplicaStatus.cs" />
@@ -556,6 +561,7 @@
     <Compile Include="Generated\ServicePartitionInfo.cs" />
     <Compile Include="Generated\ServicePartitionKind.cs" />
     <Compile Include="Generated\ServicePartitionStatus.cs" />
+    <Compile Include="Generated\ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescription.cs" />
     <Compile Include="Generated\ServicePlacementInvalidDomainPolicyDescription.cs" />
     <Compile Include="Generated\ServicePlacementNonPartiallyPlaceServicePolicyDescription.cs" />
     <Compile Include="Generated\ServicePlacementPolicyDescription.cs" />
@@ -621,6 +627,7 @@
     <Compile Include="Generated\UnprovisionApplicationTypeDescriptionInfo.cs" />
     <Compile Include="Generated\UnprovisionFabricDescription.cs" />
     <Compile Include="Generated\UpdateClusterUpgradeDescription.cs" />
+    <Compile Include="Generated\UpdatePartitionLoadResult.cs" />
     <Compile Include="Generated\UpgradeDomainDeltaNodesCheckHealthEvaluation.cs" />
     <Compile Include="Generated\UpgradeDomainInfo.cs" />
     <Compile Include="Generated\UpgradeDomainNodesHealthEvaluation.cs" />

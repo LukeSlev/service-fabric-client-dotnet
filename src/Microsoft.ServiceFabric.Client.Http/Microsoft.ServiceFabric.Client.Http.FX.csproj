@@ -123,6 +123,7 @@
     <Compile Include="Generated\Serialization\ApplicationHealthPoliciesConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationHealthPolicyConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationHealthPolicyMapItemConverter.cs" />
+    <Compile Include="Generated\Serialization\ApplicationHealthPolicyMapObjectConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationHealthReportExpiredEventConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationHealthStateChunkConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationHealthStateChunkListConverter.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="Generated\Serialization\DisableBackupDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\DiskInfoConverter.cs" />
     <Compile Include="Generated\Serialization\DoublePropertyValueConverter.cs" />
+    <Compile Include="Generated\Serialization\DsmsAzureBlobBackupStorageDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\EnableBackupDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\EndpointPropertiesConverter.cs" />
     <Compile Include="Generated\Serialization\EndpointRefConverter.cs" />
@@ -388,6 +390,7 @@
     <Compile Include="Generated\Serialization\LocalNetworkResourcePropertiesConverter.cs" />
     <Compile Include="Generated\Serialization\ManagedApplicationIdentityConverter.cs" />
     <Compile Include="Generated\Serialization\ManagedApplicationIdentityDescriptionConverter.cs" />
+    <Compile Include="Generated\Serialization\MetricLoadDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\MonitoringPolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\MoveCostConverter.cs" />
     <Compile Include="Generated\Serialization\NamedPartitionInformationConverter.cs" />
@@ -460,6 +463,7 @@
     <Compile Include="Generated\Serialization\PartitionInformationConverter.cs" />
     <Compile Include="Generated\Serialization\PartitionInstanceCountScaleMechanismConverter.cs" />
     <Compile Include="Generated\Serialization\PartitionLoadInformationConverter.cs" />
+    <Compile Include="Generated\Serialization\PartitionMetricLoadDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\PartitionNewHealthReportEventConverter.cs" />
     <Compile Include="Generated\Serialization\PartitionPrimaryMoveAnalysisEventConverter.cs" />
     <Compile Include="Generated\Serialization\PartitionQuorumLossProgressConverter.cs" />
@@ -521,6 +525,7 @@
     <Compile Include="Generated\Serialization\ReplicaHealthStateFilterConverter.cs" />
     <Compile Include="Generated\Serialization\ReplicaInfoConverter.cs" />
     <Compile Include="Generated\Serialization\ReplicaKindConverter.cs" />
+    <Compile Include="Generated\Serialization\ReplicaMetricLoadDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ReplicaRoleConverter.cs" />
     <Compile Include="Generated\Serialization\ReplicasHealthEvaluationConverter.cs" />
     <Compile Include="Generated\Serialization\ReplicaStatusBaseConverter.cs" />
@@ -601,6 +606,7 @@
     <Compile Include="Generated\Serialization\ServicePartitionInfoConverter.cs" />
     <Compile Include="Generated\Serialization\ServicePartitionKindConverter.cs" />
     <Compile Include="Generated\Serialization\ServicePartitionStatusConverter.cs" />
+    <Compile Include="Generated\Serialization\ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ServicePlacementInvalidDomainPolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ServicePlacementPolicyDescriptionConverter.cs" />
@@ -666,6 +672,7 @@
     <Compile Include="Generated\Serialization\UnprovisionApplicationTypeDescriptionInfoConverter.cs" />
     <Compile Include="Generated\Serialization\UnprovisionFabricDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\UpdateClusterUpgradeDescriptionConverter.cs" />
+    <Compile Include="Generated\Serialization\UpdatePartitionLoadResultConverter.cs" />
     <Compile Include="Generated\Serialization\UpgradeDomainDeltaNodesCheckHealthEvaluationConverter.cs" />
     <Compile Include="Generated\Serialization\UpgradeDomainInfoConverter.cs" />
     <Compile Include="Generated\Serialization\UpgradeDomainNodesHealthEvaluationConverter.cs" />
