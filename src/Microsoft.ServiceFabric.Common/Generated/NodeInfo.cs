@@ -46,6 +46,10 @@ namespace Microsoft.ServiceFabric.Common
         /// be zero date time.</param>
         /// <param name="nodeDownAt">Date time in UTC when the node went down. If node has never been down then this value will
         /// be zero date time.</param>
+        /// <param name="nodeTags">List that contains tags, which will be applied to the nodes.</param>
+        /// <param name="isNodeByNodeUpgradeInProgress">Indicates if a node-by-node upgrade is currently being performed on
+        /// this node.</param>
+        /// <param name="infrastructurePlacementID">PlacementID used by the InfrastructureService.</param>
         public NodeInfo(
             NodeName name = default(NodeName),
             string ipAddressOrFQDN = default(string),
@@ -64,7 +68,10 @@ namespace Microsoft.ServiceFabric.Common
             bool? isStopped = default(bool?),
             string nodeDownTimeInSeconds = default(string),
             DateTime? nodeUpAt = default(DateTime?),
-            DateTime? nodeDownAt = default(DateTime?))
+            DateTime? nodeDownAt = default(DateTime?),
+            IEnumerable<string> nodeTags = default(IEnumerable<string>),
+            bool? isNodeByNodeUpgradeInProgress = default(bool?),
+            string infrastructurePlacementID = default(string))
         {
             this.Name = name;
             this.IpAddressOrFQDN = ipAddressOrFQDN;
@@ -84,6 +91,9 @@ namespace Microsoft.ServiceFabric.Common
             this.NodeDownTimeInSeconds = nodeDownTimeInSeconds;
             this.NodeUpAt = nodeUpAt;
             this.NodeDownAt = nodeDownAt;
+            this.NodeTags = nodeTags;
+            this.IsNodeByNodeUpgradeInProgress = isNodeByNodeUpgradeInProgress;
+            this.InfrastructurePlacementID = infrastructurePlacementID;
         }
 
         /// <summary>
@@ -182,5 +192,20 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets date time in UTC when the node went down. If node has never been down then this value will be zero date time.
         /// </summary>
         public DateTime? NodeDownAt { get; }
+
+        /// <summary>
+        /// Gets list that contains tags, which will be applied to the nodes.
+        /// </summary>
+        public IEnumerable<string> NodeTags { get; }
+
+        /// <summary>
+        /// Gets indicates if a node-by-node upgrade is currently being performed on this node.
+        /// </summary>
+        public bool? IsNodeByNodeUpgradeInProgress { get; }
+
+        /// <summary>
+        /// Gets placementID used by the InfrastructureService.
+        /// </summary>
+        public string InfrastructurePlacementID { get; }
     }
 }

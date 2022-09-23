@@ -19,7 +19,7 @@
     }
 
 # Version number of this module. Minor.Patch version matches the Major.Minor version of client lib.
-ModuleVersion = '1.4.2'
+ModuleVersion = '1.5.0'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -115,7 +115,7 @@ PrivateData = @{
         LicenseUri = 'http://www.microsoft.com/web/webpi/eula/net_library_eula_ENU.htm'
 
         # A URL to the main website for this project.
-        ProjectUri = 'http://aka.ms/servicefabric'
+        ProjectUri = 'http://github.com/microsoft/service-fabric-client-dotnet'
 
         # A URL to an icon representing this module.
         IconUri = 'http://go.microsoft.com/fwlink/?LinkID=288890'

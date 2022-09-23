@@ -42,6 +42,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = UpgradeMode.Monitored;
             }
+            else if (string.Compare(value, "UnmonitoredDeferred", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = UpgradeMode.UnmonitoredDeferred;
+            }
 
             return obj;
         }
@@ -66,6 +70,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case UpgradeMode.Monitored:
                     writer.WriteStringValue("Monitored");
+                    break;
+                case UpgradeMode.UnmonitoredDeferred:
+                    writer.WriteStringValue("UnmonitoredDeferred");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type UpgradeMode");

@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Information about the current in-progress upgrade domain.
+    /// Information about the current in-progress upgrade domain. Not applicable to node-by-node upgrades.
     /// </summary>
     public partial class CurrentUpgradeDomainProgressInfo
     {
