@@ -109,6 +109,7 @@
     <Compile Include="Generated\Serialization\AddRemoveIncrementalNamedPartitionScalingMechanismConverter.cs" />
     <Compile Include="Generated\Serialization\AddRemoveReplicaScalingMechanismConverter.cs" />
     <Compile Include="Generated\Serialization\AnalysisEventMetadataConverter.cs" />
+    <Compile Include="Generated\Serialization\ApplicationArmMetadataUpdateDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationBackupConfigurationInfoConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationBackupEntityConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationCapacityDescriptionConverter.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Generated\Serialization\ApplicationsHealthEvaluationConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationStatusConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationTypeApplicationsHealthEvaluationConverter.cs" />
+    <Compile Include="Generated\Serialization\ApplicationTypeArmMetadataUpdateDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationTypeDefinitionKindConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationTypeHealthPolicyMapItemConverter.cs" />
     <Compile Include="Generated\Serialization\ApplicationTypeImageStorePathConverter.cs" />
@@ -199,6 +201,12 @@
     <Compile Include="Generated\Serialization\BackupTypeConverter.cs" />
     <Compile Include="Generated\Serialization\BasicRetentionPolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\BinaryPropertyValueConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSErrorClusterEventConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSErrorPartitionEventConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSInfoClusterEventConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSInfoPartitionEventConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSWarningClusterEventConverter.cs" />
+    <Compile Include="Generated\Serialization\BRSWarningPartitionEventConverter.cs" />
     <Compile Include="Generated\Serialization\ChaosCodePackageRestartScheduledEventConverter.cs" />
     <Compile Include="Generated\Serialization\ChaosContextConverter.cs" />
     <Compile Include="Generated\Serialization\ChaosConverter.cs" />
@@ -244,6 +252,7 @@
     <Compile Include="Generated\Serialization\ClusterUpgradeProgressObjectConverter.cs" />
     <Compile Include="Generated\Serialization\ClusterUpgradeRollbackCompletedEventConverter.cs" />
     <Compile Include="Generated\Serialization\ClusterUpgradeRollbackStartedEventConverter.cs" />
+    <Compile Include="Generated\Serialization\ClusterUpgradesNodesCompleteEventConverter.cs" />
     <Compile Include="Generated\Serialization\ClusterUpgradeStartedEventConverter.cs" />
     <Compile Include="Generated\Serialization\ClusterVersionConverter.cs" />
     <Compile Include="Generated\Serialization\CodePackageEntryPointConverter.cs" />
@@ -271,6 +280,7 @@
     <Compile Include="Generated\Serialization\DataLossModeConverter.cs" />
     <Compile Include="Generated\Serialization\DeactivationIntentConverter.cs" />
     <Compile Include="Generated\Serialization\DeactivationIntentDescriptionConverter.cs" />
+    <Compile Include="Generated\Serialization\DecisionEventConverter.cs" />
     <Compile Include="Generated\Serialization\DefaultExecutionPolicyConverter.cs" />
     <Compile Include="Generated\Serialization\DeletePropertyBatchOperationConverter.cs" />
     <Compile Include="Generated\Serialization\DeltaNodesCheckHealthEvaluationConverter.cs" />
@@ -390,6 +400,7 @@
     <Compile Include="Generated\Serialization\InvokeDataLossResultConverter.cs" />
     <Compile Include="Generated\Serialization\InvokeQuorumLossResultConverter.cs" />
     <Compile Include="Generated\Serialization\KeyValueStoreReplicaStatusConverter.cs" />
+    <Compile Include="Generated\Serialization\LivenessProbeFailedEventConverter.cs" />
     <Compile Include="Generated\Serialization\LoadedPartitionInformationQueryDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\LoadedPartitionInformationResultConverter.cs" />
     <Compile Include="Generated\Serialization\LoadMetricInformationConverter.cs" />
@@ -400,7 +411,9 @@
     <Compile Include="Generated\Serialization\ManagedApplicationIdentityDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ManagedIdentityAzureBlobBackupStorageDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ManagedIdentityTypeConverter.cs" />
+    <Compile Include="Generated\Serialization\ManagedKeyVaultReferenceParameterConverter.cs" />
     <Compile Include="Generated\Serialization\MetricLoadDescriptionConverter.cs" />
+    <Compile Include="Generated\Serialization\MonitoredUpgradeHealthCheckPhaseConverter.cs" />
     <Compile Include="Generated\Serialization\MonitoringPolicyDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\MoveCostConverter.cs" />
     <Compile Include="Generated\Serialization\NamedPartitionInformationConverter.cs" />
@@ -509,6 +522,7 @@
     <Compile Include="Generated\Serialization\ProvisionFabricDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\PutPropertyBatchOperationConverter.cs" />
     <Compile Include="Generated\Serialization\QuorumLossModeConverter.cs" />
+    <Compile Include="Generated\Serialization\ReadinessProbeFailedEventConverter.cs" />
     <Compile Include="Generated\Serialization\ReconfigurationInformationConverter.cs" />
     <Compile Include="Generated\Serialization\ReconfigurationPhaseConverter.cs" />
     <Compile Include="Generated\Serialization\ReconfigurationTypeConverter.cs" />
@@ -592,6 +606,7 @@
     <Compile Include="Generated\Serialization\SecretValueResourcePropertiesConverter.cs" />
     <Compile Include="Generated\Serialization\SeedNodeSafetyCheckConverter.cs" />
     <Compile Include="Generated\Serialization\SelectedPartitionConverter.cs" />
+    <Compile Include="Generated\Serialization\ServiceArmMetadataUpdateDescriptionConverter.cs" />
     <Compile Include="Generated\Serialization\ServiceBackupConfigurationInfoConverter.cs" />
     <Compile Include="Generated\Serialization\ServiceBackupEntityConverter.cs" />
     <Compile Include="Generated\Serialization\ServiceCorrelationDescriptionConverter.cs" />

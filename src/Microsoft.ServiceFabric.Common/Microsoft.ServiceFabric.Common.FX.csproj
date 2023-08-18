@@ -64,6 +64,7 @@
     <Compile Include="Generated\AddRemoveIncrementalNamedPartitionScalingMechanism.cs" />
     <Compile Include="Generated\AddRemoveReplicaScalingMechanism.cs" />
     <Compile Include="Generated\AnalysisEventMetadata.cs" />
+    <Compile Include="Generated\ApplicationArmMetadataUpdateDescription.cs" />
     <Compile Include="Generated\ApplicationBackupConfigurationInfo.cs" />
     <Compile Include="Generated\ApplicationBackupEntity.cs" />
     <Compile Include="Generated\ApplicationCapacityDescription.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Generated\ApplicationsHealthEvaluation.cs" />
     <Compile Include="Generated\ApplicationStatus.cs" />
     <Compile Include="Generated\ApplicationTypeApplicationsHealthEvaluation.cs" />
+    <Compile Include="Generated\ApplicationTypeArmMetadataUpdateDescription.cs" />
     <Compile Include="Generated\ApplicationTypeDefinitionKind.cs" />
     <Compile Include="Generated\ApplicationTypeHealthPolicyMapItem.cs" />
     <Compile Include="Generated\ApplicationTypeImageStorePath.cs" />
@@ -154,6 +156,12 @@
     <Compile Include="Generated\BackupType.cs" />
     <Compile Include="Generated\BasicRetentionPolicyDescription.cs" />
     <Compile Include="Generated\BinaryPropertyValue.cs" />
+    <Compile Include="Generated\BRSErrorClusterEvent.cs" />
+    <Compile Include="Generated\BRSErrorPartitionEvent.cs" />
+    <Compile Include="Generated\BRSInfoClusterEvent.cs" />
+    <Compile Include="Generated\BRSInfoPartitionEvent.cs" />
+    <Compile Include="Generated\BRSWarningClusterEvent.cs" />
+    <Compile Include="Generated\BRSWarningPartitionEvent.cs" />
     <Compile Include="Generated\Chaos.cs" />
     <Compile Include="Generated\ChaosCodePackageRestartScheduledEvent.cs" />
     <Compile Include="Generated\ChaosContext.cs" />
@@ -199,6 +207,7 @@
     <Compile Include="Generated\ClusterUpgradeProgressObject.cs" />
     <Compile Include="Generated\ClusterUpgradeRollbackCompletedEvent.cs" />
     <Compile Include="Generated\ClusterUpgradeRollbackStartedEvent.cs" />
+    <Compile Include="Generated\ClusterUpgradesNodesCompleteEvent.cs" />
     <Compile Include="Generated\ClusterUpgradeStartedEvent.cs" />
     <Compile Include="Generated\ClusterVersion.cs" />
     <Compile Include="Generated\CodePackageEntryPoint.cs" />
@@ -226,6 +235,7 @@
     <Compile Include="Generated\DataLossMode.cs" />
     <Compile Include="Generated\DeactivationIntent.cs" />
     <Compile Include="Generated\DeactivationIntentDescription.cs" />
+    <Compile Include="Generated\DecisionEvent.cs" />
     <Compile Include="Generated\DefaultExecutionPolicy.cs" />
     <Compile Include="Generated\DeletePropertyBatchOperation.cs" />
     <Compile Include="Generated\DeltaNodesCheckHealthEvaluation.cs" />
@@ -345,6 +355,7 @@
     <Compile Include="Generated\InvokeDataLossResult.cs" />
     <Compile Include="Generated\InvokeQuorumLossResult.cs" />
     <Compile Include="Generated\KeyValueStoreReplicaStatus.cs" />
+    <Compile Include="Generated\LivenessProbeFailedEvent.cs" />
     <Compile Include="Generated\LoadedPartitionInformationQueryDescription.cs" />
     <Compile Include="Generated\LoadedPartitionInformationResult.cs" />
     <Compile Include="Generated\LoadMetricInformation.cs" />
@@ -355,7 +366,9 @@
     <Compile Include="Generated\ManagedApplicationIdentityDescription.cs" />
     <Compile Include="Generated\ManagedIdentityAzureBlobBackupStorageDescription.cs" />
     <Compile Include="Generated\ManagedIdentityType.cs" />
+    <Compile Include="Generated\ManagedKeyVaultReferenceParameter.cs" />
     <Compile Include="Generated\MetricLoadDescription.cs" />
+    <Compile Include="Generated\MonitoredUpgradeHealthCheckPhase.cs" />
     <Compile Include="Generated\MonitoringPolicyDescription.cs" />
     <Compile Include="Generated\MoveCost.cs" />
     <Compile Include="Generated\NamedPartitionInformation.cs" />
@@ -464,6 +477,7 @@
     <Compile Include="Generated\ProvisionFabricDescription.cs" />
     <Compile Include="Generated\PutPropertyBatchOperation.cs" />
     <Compile Include="Generated\QuorumLossMode.cs" />
+    <Compile Include="Generated\ReadinessProbeFailedEvent.cs" />
     <Compile Include="Generated\ReconfigurationInformation.cs" />
     <Compile Include="Generated\ReconfigurationPhase.cs" />
     <Compile Include="Generated\ReconfigurationType.cs" />
@@ -547,6 +561,7 @@
     <Compile Include="Generated\SecretValueResourceProperties.cs" />
     <Compile Include="Generated\SeedNodeSafetyCheck.cs" />
     <Compile Include="Generated\SelectedPartition.cs" />
+    <Compile Include="Generated\ServiceArmMetadataUpdateDescription.cs" />
     <Compile Include="Generated\ServiceBackupConfigurationInfo.cs" />
     <Compile Include="Generated\ServiceBackupEntity.cs" />
     <Compile Include="Generated\ServiceCorrelationDescription.cs" />
