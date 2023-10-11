@@ -308,7 +308,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     var contentStream = await response.Content.ReadAsStreamAsync();
                     using (var streamReader = new StreamReader(contentStream))
                     {
-                        using (var reader = new JsonTextReader(streamReader))
+                        using (var reader = this.GetJsonReader<T>(streamReader))
                         {
                             retValue = deserializeFunc.Invoke(reader);
                         }
@@ -356,7 +356,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     var contentStream = await response.Content.ReadAsStreamAsync();
                     using (var streamReader = new StreamReader(contentStream))
                     {
-                        using (var reader = new JsonTextReader(streamReader))
+                        using (var reader = this.GetJsonReader<T>(streamReader))
                         {
                             retValue = reader.ReadList(deserializeFunc);
                         }
@@ -404,7 +404,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     var contentStream = await response.Content.ReadAsStreamAsync();
                     using (var streamReader = new StreamReader(contentStream))
                     {
-                        using (var reader = new JsonTextReader(streamReader))
+                        using (var reader = this.GetJsonReader<T>(streamReader))
                         {
                             retValue = PagedDataConverter<T>.Deserialize(reader, deserializeFunc);
                         }
@@ -418,6 +418,20 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return retValue;
+        }
+
+        private JsonTextReader GetJsonReader<T>(StreamReader streamReader)
+        {
+            JsonTextReader reader;
+            if (typeof(T) == typeof(ApplicationInfo))
+            {
+                reader =  new JsonTextReader(streamReader) { DateParseHandling = DateParseHandling.None };
+            }
+            else
+            {
+                reader =  new JsonTextReader(streamReader); 
+            }
+            return reader;
         }
 
         /// <summary>
