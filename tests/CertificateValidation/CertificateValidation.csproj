@@ -1,0 +1,37 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+    <ProjectGuid>{CF53F85A-27ED-4885-9D94-E7130FC3F22B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>CertificateValidation</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Microsoft.ServiceFabric.Common\Microsoft.ServiceFabric.Common.FX.csproj">
+      <Project>{20B9DC67-A115-4309-B061-E9EC90BC446F}</Project>
+      <Name>Microsoft.ServiceFabric.Common.FX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Microsoft.ServiceFabric.Client\Microsoft.ServiceFabric.Client.FX.csproj">
+      <Project>{12A9CF3E-F55F-4D87-9BFF-B5B749541F6A}</Project>
+      <Name>Microsoft.ServiceFabric.Client.FX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.FX.csproj">
+      <Project>{20E65E3C-7930-4F52-B97A-5B07B0580943}</Project>
+      <Name>Microsoft.ServiceFabric.Client.Http.FX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

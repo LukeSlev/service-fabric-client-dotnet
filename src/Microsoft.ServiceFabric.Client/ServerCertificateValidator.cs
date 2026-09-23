@@ -6,8 +6,10 @@
 namespace Microsoft.ServiceFabric.Client
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net.Security;
+    using System.Security.Cryptography;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using Microsoft.ServiceFabric.Common;
@@ -63,19 +65,25 @@ namespace Microsoft.ServiceFabric.Client
             X509Chain chain,
             SslPolicyErrors sslPolicyErrors)
         {
-            if (sslPolicyErrors == SslPolicyErrors.None)
-            {
-                return true;
-            }
-
-            if (sslPolicyErrors == SslPolicyErrors.RemoteCertificateNotAvailable)
-            {
-                return false;
-            }
-
             this.slimRWLock.EnterReadLock();
             try
             {
+                // Opt-in trust must check the configured identity and issuer even when TLS reports no errors.
+                if (this.remoteX509SecuritySettings.AllowUntrustedRootWithPinnedIssuer)
+                {
+                    return this.ValidateServerCertificateWithPinnedIssuer(cert, chain, sslPolicyErrors);
+                }
+
+                if (sslPolicyErrors == SslPolicyErrors.None)
+                {
+                    return true;
+                }
+
+                if (sslPolicyErrors == SslPolicyErrors.RemoteCertificateNotAvailable)
+                {
+                    return false;
+                }
+
                 // Call the validator function for X509Name or Thumbprints.
                 if (this.remoteX509SecuritySettings.RemoteX509Names != null)
                 {
@@ -92,6 +100,120 @@ namespace Microsoft.ServiceFabric.Client
             }
 
             return false;
+        }
+
+        private bool ValidateServerCertificateWithPinnedIssuer(X509Certificate2 cert, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            var allowedPolicyErrors = SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateChainErrors;
+            if (cert == null || chain == null || (sslPolicyErrors & ~allowedPolicyErrors) != SslPolicyErrors.None)
+            {
+                return false;
+            }
+
+            var matchingNames = this.remoteX509SecuritySettings.RemoteX509Names.Where(x =>
+                x != null && !string.IsNullOrWhiteSpace(x.Name) &&
+                (string.Equals(cert.GetNameInfo(X509NameType.SimpleName, false), x.Name, StringComparison.OrdinalIgnoreCase) ||
+                 string.Equals(cert.GetNameInfo(X509NameType.DnsName, false), x.Name, StringComparison.OrdinalIgnoreCase))).ToList();
+            if (matchingNames.Count == 0)
+            {
+                return false;
+            }
+
+            using (var verifiedChain = new X509Chain())
+            {
+                // Rebuild for the actual peer certificate, without inheriting flags that suppress validation failures.
+                verifiedChain.ChainPolicy.RevocationMode = chain.ChainPolicy.RevocationMode;
+                verifiedChain.ChainPolicy.RevocationFlag = chain.ChainPolicy.RevocationFlag;
+                verifiedChain.ChainPolicy.UrlRetrievalTimeout = chain.ChainPolicy.UrlRetrievalTimeout;
+                verifiedChain.ChainPolicy.ApplicationPolicy.Add(new Oid("1.3.6.1.5.5.7.3.1"));
+                foreach (Oid policy in chain.ChainPolicy.ApplicationPolicy)
+                {
+                    // Duplicate EKUs cause Windows chain validation to report NotValidForUsage.
+                    if (!verifiedChain.ChainPolicy.ApplicationPolicy.Cast<Oid>().Any(existing => existing.Value == policy.Value))
+                    {
+                        verifiedChain.ChainPolicy.ApplicationPolicy.Add(policy);
+                    }
+                }
+
+                foreach (Oid policy in chain.ChainPolicy.CertificatePolicy)
+                {
+                    verifiedChain.ChainPolicy.CertificatePolicy.Add(policy);
+                }
+
+                verifiedChain.ChainPolicy.ExtraStore.AddRange(chain.ChainPolicy.ExtraStore);
+                foreach (X509ChainElement element in chain.ChainElements)
+                {
+                    verifiedChain.ChainPolicy.ExtraStore.Add(element.Certificate);
+                }
+
+                var chainBuilt = verifiedChain.Build(cert);
+                if (!chainBuilt && verifiedChain.ChainStatus.Length == 0)
+                {
+                    return false;
+                }
+
+                foreach (var name in matchingNames)
+                {
+                    var trustErrors = X509ChainStatusFlags.NoError;
+                    if (name.IssuerCertThumbprint != null)
+                    {
+                        // A leaf thumbprint is not an issuer pin. The chain engine must verify a link to a CA.
+                        if (verifiedChain.ChainElements.Count < 2)
+                        {
+                            continue;
+                        }
+
+                        var issuer = verifiedChain.ChainElements[1].Certificate;
+                        var root = verifiedChain.ChainElements[verifiedChain.ChainElements.Count - 1].Certificate;
+                        var hasPartialChain = verifiedChain.ChainStatus.Any(status =>
+                            (status.Status & X509ChainStatusFlags.PartialChain) != 0);
+                        if (!IsPinnedCertificateAuthority(issuer, name.IssuerCertThumbprint) &&
+                            (hasPartialChain || !IsPinnedCertificateAuthority(root, name.IssuerCertThumbprint)))
+                        {
+                            continue;
+                        }
+
+                        // Root pins require a chain reaching that root; partial chains still require a direct issuer pin.
+                        trustErrors = X509ChainStatusFlags.UntrustedRoot | X509ChainStatusFlags.PartialChain;
+                    }
+
+                    if (this.HasOnlyAllowedChainErrors(chain, trustErrors) &&
+                        this.HasOnlyAllowedChainErrors(verifiedChain, trustErrors))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsPinnedCertificateAuthority(X509Certificate2 certificate, string expectedThumbprints)
+        {
+            var constraints = certificate.Extensions.OfType<X509BasicConstraintsExtension>().FirstOrDefault();
+            return constraints != null && constraints.CertificateAuthority &&
+                expectedThumbprints.Split(',').Any(pin =>
+                    string.Equals(pin.Trim(), certificate.Thumbprint, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private bool HasOnlyAllowedChainErrors(X509Chain chain, X509ChainStatusFlags trustErrors)
+        {
+            return this.HasOnlyAllowedChainErrors(chain.ChainStatus, trustErrors) &&
+                chain.ChainElements.Cast<X509ChainElement>().All(element =>
+                    this.HasOnlyAllowedChainErrors(element.ChainElementStatus, trustErrors));
+        }
+
+        private bool HasOnlyAllowedChainErrors(IEnumerable<X509ChainStatus> statuses, X509ChainStatusFlags trustErrors)
+        {
+            var errors = statuses.Aggregate(X509ChainStatusFlags.NoError, (result, status) => result | status.Status);
+            if (this.remoteX509SecuritySettings.IgnoreCrlOfflineError &&
+                (errors & X509ChainStatusFlags.OfflineRevocation) != 0)
+            {
+                // Windows reports an offline CRL together with RevocationStatusUnknown.
+                trustErrors |= X509ChainStatusFlags.OfflineRevocation | X509ChainStatusFlags.RevocationStatusUnknown;
+            }
+
+            return (errors & ~trustErrors) == X509ChainStatusFlags.NoError;
         }
 
         /// <summary>
