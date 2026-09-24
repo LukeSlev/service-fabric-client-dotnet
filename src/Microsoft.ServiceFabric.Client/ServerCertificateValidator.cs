@@ -167,8 +167,10 @@ namespace Microsoft.ServiceFabric.Client
                         var root = verifiedChain.ChainElements[verifiedChain.ChainElements.Count - 1].Certificate;
                         var hasPartialChain = verifiedChain.ChainStatus.Any(status =>
                             (status.Status & X509ChainStatusFlags.PartialChain) != 0);
-                        if (!IsPinnedCertificateAuthority(issuer, name.IssuerCertThumbprint) &&
-                            (hasPartialChain || !IsPinnedCertificateAuthority(root, name.IssuerCertThumbprint)))
+                        var acceptablePin =
+                            IsPinnedCertificateAuthority(issuer, name.IssuerCertThumbprint) ||
+                            (!hasPartialChain && IsPinnedCertificateAuthority(root, name.IssuerCertThumbprint));
+                        if (!acceptablePin)
                         {
                             continue;
                         }
