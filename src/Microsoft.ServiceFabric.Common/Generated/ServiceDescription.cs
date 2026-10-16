@@ -32,21 +32,20 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
         /// 'High', 'VeryHigh'
-        /// 
+        ///
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="isDefaultMoveCostSpecified">Indicates if the DefaultMoveCost property is specified.</param>
         /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a service.
         /// Possible values include: 'SharedProcess', 'ExclusiveProcess'
-        /// 
+        ///
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
-        /// <param name="tagsRequiredToPlace">Tags for placement of this service.</param>
-        /// <param name="tagsRequiredToRun">Tags for running of this service.</param>
+        /// <param name="serviceTags">Service tags collections for placement and running of the service.</param>
         protected ServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -63,8 +62,7 @@ namespace Microsoft.ServiceFabric.Common
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
             string serviceDnsName = default(string),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
-            NodeTagsDescription tagsRequiredToPlace = default(NodeTagsDescription),
-            NodeTagsDescription tagsRequiredToRun = default(NodeTagsDescription))
+            ServiceTags serviceTags = default(ServiceTags))
         {
             serviceName.ThrowIfNull(nameof(serviceName));
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));
@@ -85,8 +83,7 @@ namespace Microsoft.ServiceFabric.Common
             this.ServicePackageActivationMode = servicePackageActivationMode;
             this.ServiceDnsName = serviceDnsName;
             this.ScalingPolicies = scalingPolicies;
-            this.TagsRequiredToPlace = tagsRequiredToPlace;
-            this.TagsRequiredToRun = tagsRequiredToRun;
+            this.ServiceTags = serviceTags;
         }
 
         /// <summary>
@@ -139,7 +136,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
-        /// 
+        ///
         /// Specifies the move cost for the service.
         /// </summary>
         public MoveCost? DefaultMoveCost { get; }
@@ -152,7 +149,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the activation mode of service package to be used for a service. Possible values include: 'SharedProcess',
         /// 'ExclusiveProcess'
-        /// 
+        ///
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </summary>
@@ -169,14 +166,9 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; }
 
         /// <summary>
-        /// Gets tags for placement of this service.
+        /// Gets service tags collections for placement and running of the service.
         /// </summary>
-        public NodeTagsDescription TagsRequiredToPlace { get; }
-
-        /// <summary>
-        /// Gets tags for running of this service.
-        /// </summary>
-        public NodeTagsDescription TagsRequiredToRun { get; }
+        public ServiceTags ServiceTags { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

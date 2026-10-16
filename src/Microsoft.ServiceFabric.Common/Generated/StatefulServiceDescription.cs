@@ -35,27 +35,26 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
         /// 'High', 'VeryHigh'
-        /// 
+        ///
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="isDefaultMoveCostSpecified">Indicates if the DefaultMoveCost property is specified.</param>
         /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a service.
         /// Possible values include: 'SharedProcess', 'ExclusiveProcess'
-        /// 
+        ///
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
-        /// <param name="tagsRequiredToPlace">Tags for placement of this service.</param>
-        /// <param name="tagsRequiredToRun">Tags for running of this service.</param>
+        /// <param name="serviceTags">Service tags collections for placement and running of the service.</param>
         /// <param name="flags">Flags indicating whether other properties are set. Each of the associated properties
         /// corresponds to a flag, specified below, which, if set, indicate that the property is specified.
         /// This property can be a combination of those flags obtained using bitwise 'OR' operator.
         /// For example, if the provided value is 6 then the flags for QuorumLossWaitDuration (2) and
         /// StandByReplicaKeepDuration(4) are set.
-        /// 
+        ///
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
@@ -74,11 +73,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
         /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
         /// if not it is false.</param>
-        /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during ther
+        /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during their
         /// lifecycle.</param>
         /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas, the
         /// following must be true: AuxiliaryReplicaCount &lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
         /// <param name="serviceSensitivityDescription">Defines default levels of replica sensitivity of this service.</param>
+        /// <param name="serviceOptions">Flags that specify options applied to the service when it is created. This is a
+        /// flag-based enumeration, so the value can be a combination of the values below
+        /// obtained using the bitwise 'OR' operator.
+        ///
+        /// - None - No service options are specified. The value is 0.
+        /// - InitiallyDisabled - The service is created in a disabled state and must be
+        /// explicitly enabled before any replicas or instances are placed. The value is 1.
+        /// </param>
         public StatefulServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -97,8 +104,7 @@ namespace Microsoft.ServiceFabric.Common
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
             string serviceDnsName = default(string),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
-            NodeTagsDescription tagsRequiredToPlace = default(NodeTagsDescription),
-            NodeTagsDescription tagsRequiredToRun = default(NodeTagsDescription),
+            ServiceTags serviceTags = default(ServiceTags),
             int? flags = default(int?),
             long? replicaRestartWaitDurationSeconds = default(long?),
             long? quorumLossWaitDurationSeconds = default(long?),
@@ -107,7 +113,8 @@ namespace Microsoft.ServiceFabric.Common
             bool? dropSourceReplicaOnMove = default(bool?),
             ReplicaLifecycleDescription replicaLifecycleDescription = default(ReplicaLifecycleDescription),
             int? auxiliaryReplicaCount = default(int?),
-            ServiceSensitivityDescription serviceSensitivityDescription = default(ServiceSensitivityDescription))
+            ServiceSensitivityDescription serviceSensitivityDescription = default(ServiceSensitivityDescription),
+            int? serviceOptions = default(int?))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -124,8 +131,7 @@ namespace Microsoft.ServiceFabric.Common
                 servicePackageActivationMode,
                 serviceDnsName,
                 scalingPolicies,
-                tagsRequiredToPlace,
-                tagsRequiredToRun)
+                serviceTags)
         {
             targetReplicaSetSize.ThrowIfNull(nameof(targetReplicaSetSize));
             minReplicaSetSize.ThrowIfNull(nameof(minReplicaSetSize));
@@ -149,6 +155,7 @@ namespace Microsoft.ServiceFabric.Common
             this.ReplicaLifecycleDescription = replicaLifecycleDescription;
             this.AuxiliaryReplicaCount = auxiliaryReplicaCount;
             this.ServiceSensitivityDescription = serviceSensitivityDescription;
+            this.ServiceOptions = serviceOptions;
         }
 
         /// <summary>
@@ -173,7 +180,7 @@ namespace Microsoft.ServiceFabric.Common
         /// This property can be a combination of those flags obtained using bitwise 'OR' operator.
         /// For example, if the provided value is 6 then the flags for QuorumLossWaitDuration (2) and
         /// StandByReplicaKeepDuration(4) are set.
-        /// 
+        ///
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
@@ -210,7 +217,7 @@ namespace Microsoft.ServiceFabric.Common
         public bool? DropSourceReplicaOnMove { get; }
 
         /// <summary>
-        /// Gets defines how replicas of this service will behave during ther lifecycle.
+        /// Gets defines how replicas of this service will behave during their lifecycle.
         /// </summary>
         public ReplicaLifecycleDescription ReplicaLifecycleDescription { get; }
 
@@ -224,5 +231,16 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets defines default levels of replica sensitivity of this service.
         /// </summary>
         public ServiceSensitivityDescription ServiceSensitivityDescription { get; }
+
+        /// <summary>
+        /// Gets flags that specify options applied to the service when it is created. This is a
+        /// flag-based enumeration, so the value can be a combination of the values below
+        /// obtained using the bitwise 'OR' operator.
+        ///
+        /// - None - No service options are specified. The value is 0.
+        /// - InitiallyDisabled - The service is created in a disabled state and must be
+        /// explicitly enabled before any replicas or instances are placed. The value is 1.
+        /// </summary>
+        public int? ServiceOptions { get; }
     }
 }

@@ -22,7 +22,7 @@ namespace Microsoft.ServiceFabric.Common
         /// This property can be a combination of those flags obtained using bitwise 'OR' operator.
         /// For example, if the provided value is 6 then the flags for ReplicaRestartWaitDuration (2) and
         /// QuorumLossWaitDuration (4) are set.
-        /// 
+        ///
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - TargetReplicaSetSize/InstanceCount - Indicates whether the TargetReplicaSetSize property (for Stateful services)
         /// or the InstanceCount property (for Stateless services) is set. The value is 1.
@@ -43,8 +43,10 @@ namespace Microsoft.ServiceFabric.Common
         /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
         /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
         /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
-        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
-        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
+        /// - ServiceTags TagsRequiredToPlace - Indicates the TagsRequiredToPlace property is set. The value is 1048576.
+        /// - ServiceTags TagsRequiredToRun - Indicates the TagsRequiredToRun property is set. The value is 2097152.
+        /// - ServiceTags - Indicates the ServiceTags (the per-service tag list used for notification filtering) property is
+        /// set. The value is 134217728.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -55,13 +57,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
         /// 'High', 'VeryHigh'
-        /// 
+        ///
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
         /// <param name="serviceDnsName">The DNS name of the service.</param>
-        /// <param name="tagsForPlacement">Tags for placement of this service.</param>
-        /// <param name="tagsForRunning">Tags for running of this service.</param>
+        /// <param name="serviceTags">Service tags collections for placement and running of the service.</param>
         /// <param name="repartitionDescription">The repartition description as an object.</param>
         protected ServiceUpdateDescription(
             ServiceKind? serviceKind,
@@ -73,8 +74,7 @@ namespace Microsoft.ServiceFabric.Common
             MoveCost? defaultMoveCost = default(MoveCost?),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
             string serviceDnsName = default(string),
-            NodeTagsDescription tagsForPlacement = default(NodeTagsDescription),
-            NodeTagsDescription tagsForRunning = default(NodeTagsDescription),
+            ServiceTags serviceTags = default(ServiceTags),
             RepartitionSchemeDescription repartitionDescription = default(RepartitionSchemeDescription))
         {
             serviceKind.ThrowIfNull(nameof(serviceKind));
@@ -87,8 +87,7 @@ namespace Microsoft.ServiceFabric.Common
             this.DefaultMoveCost = defaultMoveCost;
             this.ScalingPolicies = scalingPolicies;
             this.ServiceDnsName = serviceDnsName;
-            this.TagsForPlacement = tagsForPlacement;
-            this.TagsForRunning = tagsForRunning;
+            this.ServiceTags = serviceTags;
             this.RepartitionDescription = repartitionDescription;
         }
 
@@ -98,7 +97,7 @@ namespace Microsoft.ServiceFabric.Common
         /// This property can be a combination of those flags obtained using bitwise 'OR' operator.
         /// For example, if the provided value is 6 then the flags for ReplicaRestartWaitDuration (2) and
         /// QuorumLossWaitDuration (4) are set.
-        /// 
+        ///
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - TargetReplicaSetSize/InstanceCount - Indicates whether the TargetReplicaSetSize property (for Stateful services)
         /// or the InstanceCount property (for Stateless services) is set. The value is 1.
@@ -119,8 +118,10 @@ namespace Microsoft.ServiceFabric.Common
         /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
         /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
         /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
-        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
-        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
+        /// - ServiceTags TagsRequiredToPlace - Indicates the TagsRequiredToPlace property is set. The value is 1048576.
+        /// - ServiceTags TagsRequiredToRun - Indicates the TagsRequiredToRun property is set. The value is 2097152.
+        /// - ServiceTags - Indicates the ServiceTags (the per-service tag list used for notification filtering) property is
+        /// set. The value is 134217728.
         /// </summary>
         public string Flags { get; }
 
@@ -148,7 +149,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
-        /// 
+        ///
         /// Specifies the move cost for the service.
         /// </summary>
         public MoveCost? DefaultMoveCost { get; }
@@ -164,14 +165,9 @@ namespace Microsoft.ServiceFabric.Common
         public string ServiceDnsName { get; }
 
         /// <summary>
-        /// Gets tags for placement of this service.
+        /// Gets service tags collections for placement and running of the service.
         /// </summary>
-        public NodeTagsDescription TagsForPlacement { get; }
-
-        /// <summary>
-        /// Gets tags for running of this service.
-        /// </summary>
-        public NodeTagsDescription TagsForRunning { get; }
+        public ServiceTags ServiceTags { get; }
 
         /// <summary>
         /// Gets the repartition description as an object.

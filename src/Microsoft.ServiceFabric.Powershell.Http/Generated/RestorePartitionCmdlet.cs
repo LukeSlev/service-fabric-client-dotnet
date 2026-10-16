@@ -136,7 +136,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public Guid? ManagedIdentityClientId { get; set; }
 
         /// <summary>
-        /// Gets or sets Latest. Specifies whether BackupRestore Service whould automatically determine the latest backup
+        /// Gets or sets Latest. Specifies whether BackupRestore Service would automatically determine the latest backup
         /// available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will
         /// automatically fetch the latest backup and Restore the partition using that.
         /// </summary>
@@ -160,6 +160,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// </summary>
         [Parameter(Mandatory = false, Position = 18)]
         public long? ServerTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets MetadataFromBlob. Specifies whether to fetch backup metadata from the backup blob in the response.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 19)]
+        public bool? MetadataFromBlob { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
@@ -210,6 +216,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 latest: this.Latest,
                 restoreTimeout: this.RestoreTimeout,
                 serverTimeout: this.ServerTimeout,
+                metadataFromBlob: this.MetadataFromBlob,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
             Console.WriteLine("Success!");

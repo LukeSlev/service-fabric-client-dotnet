@@ -19,7 +19,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="code">Defines the fabric error codes that be returned as part of the error object in response to
         /// Service Fabric API operations that are not successful. Following are the error code values that can be returned for
         /// a specific HTTP status code.
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 400 (Bad Request)
         /// - "FABRIC_E_INVALID_PARTITION_KEY"
         /// - "FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR"
@@ -39,8 +39,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH"
         /// - "FABRIC_E_INVALID_FOR_STATELESS_SERVICES"
         /// - "FABRIC_E_INVALID_SERVICE_SCALING_POLICY"
+        /// - "FABRIC_E_DISABLE_ENABLE_SERVICE_FEATURE_DISABLED"
+        /// - "FABRIC_E_SERVICE_DISABLED"
+        /// - "FABRIC_E_OPERATION_FAILED_SERVICE_PURGED"
         /// - "E_INVALIDARG"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 404 (Not Found)
         /// - "FABRIC_E_NODE_NOT_FOUND"
         /// - "FABRIC_E_APPLICATION_TYPE_NOT_FOUND"
@@ -66,7 +69,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_POLICY_NOT_EXISTING"
         /// - "FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING"
         /// - "FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 409 (Conflict)
         /// - "FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS"
         /// - "FABRIC_E_APPLICATION_ALREADY_EXISTS"
@@ -92,10 +95,13 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_IN_PROGRESS"
         /// - "FABRIC_E_RESTORE_IN_PROGRESS"
         /// - "FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING"
-        /// 
+        /// - "FABRIC_E_SERVICE_ALREADY_IN_REQUESTED_STATE"
+        /// - "FABRIC_E_SERVICE_DISABLE_IN_PROGRESS"
+        /// - "FABRIC_E_MAX_ALLOWED_DISABLED_SERVICES_REACHED"
+        ///
         /// - Possible values of the error code for HTTP status code 413 (Request Entity Too Large)
         /// - "FABRIC_E_VALUE_TOO_LARGE"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 500 (Internal Server Error)
         /// - "FABRIC_E_NODE_IS_UP"
         /// - "E_FAIL"
@@ -105,7 +111,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_VOLUME_NOT_FOUND"
         /// - "SerializationError"
         /// - "FABRIC_E_CERTIFICATE_NOT_FOUND"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
         /// - "FABRIC_E_NOT_PRIMARY"
@@ -114,7 +120,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_SERVICE_OFFLINE"
         /// - "E_ABORT"
         /// - "FABRIC_E_VALUE_TOO_LARGE"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 504 (Gateway Timeout)
         /// - "FABRIC_E_COMMUNICATION_ERROR"
         /// - "FABRIC_E_OPERATION_NOT_COMPLETE"
@@ -149,7 +155,10 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG',
         /// 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS', 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND',
         /// 'FABRIC_E_VOLUME_ALREADY_EXISTS', 'FABRIC_E_VOLUME_NOT_FOUND', 'SerializationError',
-        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND'</param>
+        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND',
+        /// 'FABRIC_E_SERVICE_ALREADY_IN_REQUESTED_STATE', 'FABRIC_E_SERVICE_DISABLE_IN_PROGRESS',
+        /// 'FABRIC_E_DISABLE_ENABLE_SERVICE_FEATURE_DISABLED', 'FABRIC_E_MAX_ALLOWED_DISABLED_SERVICES_REACHED',
+        /// 'FABRIC_E_SERVICE_DISABLED', 'FABRIC_E_OPERATION_FAILED_SERVICE_PURGED'</param>
         /// <param name="message">Error message.</param>
         public FabricErrorError(
             FabricErrorCodes? code,
@@ -164,7 +173,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets defines the fabric error codes that be returned as part of the error object in response to Service Fabric API
         /// operations that are not successful. Following are the error code values that can be returned for a specific HTTP
         /// status code.
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 400 (Bad Request)
         /// - "FABRIC_E_INVALID_PARTITION_KEY"
         /// - "FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR"
@@ -184,8 +193,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH"
         /// - "FABRIC_E_INVALID_FOR_STATELESS_SERVICES"
         /// - "FABRIC_E_INVALID_SERVICE_SCALING_POLICY"
+        /// - "FABRIC_E_DISABLE_ENABLE_SERVICE_FEATURE_DISABLED"
+        /// - "FABRIC_E_SERVICE_DISABLED"
+        /// - "FABRIC_E_OPERATION_FAILED_SERVICE_PURGED"
         /// - "E_INVALIDARG"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 404 (Not Found)
         /// - "FABRIC_E_NODE_NOT_FOUND"
         /// - "FABRIC_E_APPLICATION_TYPE_NOT_FOUND"
@@ -211,7 +223,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_POLICY_NOT_EXISTING"
         /// - "FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING"
         /// - "FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 409 (Conflict)
         /// - "FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS"
         /// - "FABRIC_E_APPLICATION_ALREADY_EXISTS"
@@ -237,10 +249,13 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_IN_PROGRESS"
         /// - "FABRIC_E_RESTORE_IN_PROGRESS"
         /// - "FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING"
-        /// 
+        /// - "FABRIC_E_SERVICE_ALREADY_IN_REQUESTED_STATE"
+        /// - "FABRIC_E_SERVICE_DISABLE_IN_PROGRESS"
+        /// - "FABRIC_E_MAX_ALLOWED_DISABLED_SERVICES_REACHED"
+        ///
         /// - Possible values of the error code for HTTP status code 413 (Request Entity Too Large)
         /// - "FABRIC_E_VALUE_TOO_LARGE"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 500 (Internal Server Error)
         /// - "FABRIC_E_NODE_IS_UP"
         /// - "E_FAIL"
@@ -250,7 +265,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_VOLUME_NOT_FOUND"
         /// - "SerializationError"
         /// - "FABRIC_E_CERTIFICATE_NOT_FOUND"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
         /// - "FABRIC_E_NOT_PRIMARY"
@@ -259,7 +274,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_SERVICE_OFFLINE"
         /// - "E_ABORT"
         /// - "FABRIC_E_VALUE_TOO_LARGE"
-        /// 
+        ///
         /// - Possible values of the error code for HTTP status code 504 (Gateway Timeout)
         /// - "FABRIC_E_COMMUNICATION_ERROR"
         /// - "FABRIC_E_OPERATION_NOT_COMPLETE"
@@ -294,7 +309,10 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG',
         /// 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS', 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND',
         /// 'FABRIC_E_VOLUME_ALREADY_EXISTS', 'FABRIC_E_VOLUME_NOT_FOUND', 'SerializationError',
-        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND'
+        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND',
+        /// 'FABRIC_E_SERVICE_ALREADY_IN_REQUESTED_STATE', 'FABRIC_E_SERVICE_DISABLE_IN_PROGRESS',
+        /// 'FABRIC_E_DISABLE_ENABLE_SERVICE_FEATURE_DISABLED', 'FABRIC_E_MAX_ALLOWED_DISABLED_SERVICES_REACHED',
+        /// 'FABRIC_E_SERVICE_DISABLED', 'FABRIC_E_OPERATION_FAILED_SERVICE_PURGED'
         /// </summary>
         public FabricErrorCodes? Code { get; }
 
