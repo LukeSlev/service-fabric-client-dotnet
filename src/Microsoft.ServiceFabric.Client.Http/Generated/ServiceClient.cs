@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/GetServices";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serviceTypeName?.AddToQueryParameters(queryParams, $"ServiceTypeName={serviceTypeName}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
@@ -57,7 +57,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -85,12 +85,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             url = url.Replace("{applicationId}", applicationId);
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -115,12 +115,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetApplicationName";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -147,12 +147,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/GetServices/$/Create";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -188,12 +188,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/GetServices/$/CreateFromTemplate";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -228,13 +228,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/Delete";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             forceRemove?.AddToQueryParameters(queryParams, $"ForceRemove={forceRemove}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -261,12 +261,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/Update";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -300,12 +300,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetDescription";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -333,7 +333,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetHealth";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             eventsHealthStateFilter?.AddToQueryParameters(queryParams, $"EventsHealthStateFilter={eventsHealthStateFilter}");
             partitionsHealthStateFilter?.AddToQueryParameters(queryParams, $"PartitionsHealthStateFilter={partitionsHealthStateFilter}");
@@ -341,7 +341,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -370,7 +370,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetHealth";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             eventsHealthStateFilter?.AddToQueryParameters(queryParams, $"EventsHealthStateFilter={eventsHealthStateFilter}");
             partitionsHealthStateFilter?.AddToQueryParameters(queryParams, $"PartitionsHealthStateFilter={partitionsHealthStateFilter}");
@@ -378,7 +378,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -419,13 +419,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/ReportHealth";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             immediate?.AddToQueryParameters(queryParams, $"Immediate={immediate}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -462,7 +462,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/ResolvePartition";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             partitionKeyType?.AddToQueryParameters(queryParams, $"PartitionKeyType={partitionKeyType}");
             partitionKeyValue?.AddToQueryParameters(queryParams, $"PartitionKeyValue={partitionKeyValue}");
@@ -470,7 +470,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -497,14 +497,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetUnplacedReplicaInformation";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             partitionId?.AddToQueryParameters(queryParams, $"PartitionId={partitionId.ToString()}");
             onlyQueryPrimaries?.AddToQueryParameters(queryParams, $"OnlyQueryPrimaries={onlyQueryPrimaries}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -532,13 +532,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/UpdateArmMetadata";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             force?.AddToQueryParameters(queryParams, $"Force={force}");
             queryParams.Add("api-version=9.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -554,6 +554,70 @@ namespace Microsoft.ServiceFabric.Client.Http
                     Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task DisableServiceAsync(
+            string serviceId,
+            DisableServiceFlag? disableServiceFlag = DisableServiceFlag.RemoveData,
+            bool? forceDisable = default(bool?),
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/Disable";
+            url = url.Replace("{serviceId}", serviceId);
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            disableServiceFlag?.AddToQueryParameters(queryParams, $"DisableServiceFlag={disableServiceFlag.ToString()}");
+            forceDisable?.AddToQueryParameters(queryParams, $"ForceDisable={forceDisable}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.5");
+            url += "?" + string.Join("&", queryParams);
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task EnableServiceAsync(
+            string serviceId,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/Enable";
+            url = url.Replace("{serviceId}", serviceId);
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.5");
+            url += "?" + string.Join("&", queryParams);
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
                 return request;
             }
 

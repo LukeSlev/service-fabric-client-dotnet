@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetLoadedPartitionInfoList";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             metricName?.AddToQueryParameters(queryParams, $"MetricName={metricName}");
             serviceName?.AddToQueryParameters(queryParams, $"ServiceName={serviceName}");
@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             queryParams.Add("api-version=8.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -82,13 +82,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetPartitions";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -113,12 +113,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -143,12 +143,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetServiceName";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -176,7 +176,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             eventsHealthStateFilter?.AddToQueryParameters(queryParams, $"EventsHealthStateFilter={eventsHealthStateFilter}");
             replicasHealthStateFilter?.AddToQueryParameters(queryParams, $"ReplicasHealthStateFilter={replicasHealthStateFilter}");
@@ -184,7 +184,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -213,7 +213,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             eventsHealthStateFilter?.AddToQueryParameters(queryParams, $"EventsHealthStateFilter={eventsHealthStateFilter}");
             replicasHealthStateFilter?.AddToQueryParameters(queryParams, $"ReplicasHealthStateFilter={replicasHealthStateFilter}");
@@ -221,7 +221,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -262,13 +262,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/ReportHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             immediate?.AddToQueryParameters(queryParams, $"Immediate={immediate}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -302,12 +302,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetLoadInformation";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -332,12 +332,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/ResetLoad";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -362,12 +362,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/Recover";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -392,12 +392,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/$/{serviceId}/$/GetPartitions/$/Recover";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -419,12 +419,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/RecoverSystemPartitions";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -446,12 +446,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/RecoverAllPartitions";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -478,14 +478,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/MovePrimaryReplica";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             nodeName?.AddToQueryParameters(queryParams, $"NodeName={nodeName.ToString()}");
             ignoreConstraints?.AddToQueryParameters(queryParams, $"IgnoreConstraints={ignoreConstraints}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.5");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -514,7 +514,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/MoveSecondaryReplica";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
             newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
@@ -522,7 +522,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.5");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -549,14 +549,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/UpdatePartitionLoad";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=7.2");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -596,7 +596,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
             newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
@@ -604,13 +604,51 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=8.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
                 };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task CompleteSelfReconfigurationAsync(
+            CompleteSelfReconfigurationDescription completeSelfReconfigurationDescription,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            completeSelfReconfigurationDescription.ThrowIfNull(nameof(completeSelfReconfigurationDescription));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/CompleteSelfReconfiguration";
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.5");
+            url += "?" + string.Join("&", queryParams);
+
+            string content;
+            using (var sw = new StringWriter())
+            {
+                CompleteSelfReconfigurationDescriptionConverter.Serialize(new JsonTextWriter(sw), completeSelfReconfigurationDescription);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
             }
 
@@ -635,7 +673,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
             newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
@@ -643,7 +681,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=8.1");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()

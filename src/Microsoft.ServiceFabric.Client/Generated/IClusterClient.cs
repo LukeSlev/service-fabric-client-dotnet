@@ -25,12 +25,12 @@ namespace Microsoft.ServiceFabric.Client
         /// Get the Service Fabric cluster manifest. The cluster manifest contains properties of the cluster that include
         /// different node types on the cluster,
         /// security configurations, fault, and upgrade domain topologies, etc.
-        /// 
+        ///
         /// These properties are specified as part of the ClusterConfig.JSON file while deploying a stand-alone cluster.
         /// However, most of the information in the cluster manifest
         /// is generated internally by service fabric during cluster deployment in other deployment scenarios (e.g. when using
         /// Azure portal).
-        /// 
+        ///
         /// The contents of the cluster manifest are for informational purposes only and users are not expected to take a
         /// dependency on the format of the file contents or its interpretation.
         /// </remarks>
@@ -68,7 +68,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of nodes with HealthState value of OK (2) and Warning (4)
         /// are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -87,7 +87,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of applications with HealthState value of OK (2) and
         /// Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -103,7 +103,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -163,7 +163,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of nodes with HealthState value of OK (2) and Warning (4)
         /// are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -182,7 +182,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of applications with HealthState value of OK (2) and
         /// Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -198,7 +198,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -731,6 +731,27 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get the information about the Failover Manager Manager (FMM).
+        /// </summary>
+        /// <remarks>
+        /// Get the information about the Failover Manager Manager (FMM).
+        /// </remarks>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<FailoverManagerManagerInformation> GetFailoverManagerManagerInformationAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Gets the load of a Service Fabric cluster.
         /// </summary>
         /// <remarks>
@@ -773,6 +794,68 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ToggleVerboseServicePlacementHealthReportingAsync(
             bool? enabled,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Removes stuck impact approval objects from the Failover Manager.
+        /// </summary>
+        /// <remarks>
+        /// Removes impact approval objects from the Failover Manager that match the specified
+        /// filters. This is a DRI mitigation tool.
+        ///
+        /// Impact approval objects track operations that require safety approval before proceeding
+        /// (e.g., node deactivations, upgrades). When an impact object gets stuck and blocks
+        /// further operations, this API can clear it to unblock the system.
+        ///
+        /// All filter parameters are optional. If no filters are specified, all impact objects
+        /// are removed.
+        /// </remarks>
+        /// <param name ="impactSelector">Filters to select which impact objects to remove. All fields are optional.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task ClearImpactObjectsAsync(
+            ImpactSelector impactSelector,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Approves or acts on an impact approval object.
+        /// </summary>
+        /// <remarks>
+        /// Performs an action (such as approval) on an impact approval object in the
+        /// Failover Manager. This is a DRI mitigation tool.
+        ///
+        /// When an operation is waiting for impact approval (e.g., a node deactivation
+        /// or upgrade needs safety sign-off), this API can approve it to unblock
+        /// the operation.
+        /// </remarks>
+        /// <param name ="impactId">The unique ID (GUID) of the impact approval object to act on.</param>
+        /// <param name ="impactAction">The action to perform on the impact object. Possible values include: 'Unknown',
+        /// 'Approve'</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task InvokeImpactActionAsync(
+            Guid? impactId,
+            ImpactActionKind? impactAction,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 

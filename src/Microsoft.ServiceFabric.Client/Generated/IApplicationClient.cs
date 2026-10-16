@@ -209,7 +209,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -228,7 +228,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of deployed applications with HealthState value of OK (2)
         /// and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -245,7 +245,7 @@ namespace Microsoft.ServiceFabric.Client
         /// combination of these values,
         /// obtained using bitwise 'OR' operator. For example, if the provided value is 6 then health state of services with
         /// HealthState value of OK (2) and Warning (4) will be returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -299,7 +299,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -318,7 +318,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of deployed applications with HealthState value of OK (2)
         /// and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -335,7 +335,7 @@ namespace Microsoft.ServiceFabric.Client
         /// combination of these values,
         /// obtained using bitwise 'OR' operator. For example, if the provided value is 6 then health state of services with
         /// HealthState value of OK (2) and Warning (4) will be returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -723,7 +723,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -742,7 +742,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of service packages with HealthState value of OK (2) and
         /// Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -801,7 +801,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
         /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -820,7 +820,7 @@ namespace Microsoft.ServiceFabric.Client
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of service packages with HealthState value of OK (2) and
         /// Warning (4) are returned.
-        /// 
+        ///
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
         /// of states. The value is 1.
@@ -925,7 +925,7 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="applicationArmMetadataUpdateDescription">The Arm metadata to be assocated with a specific
+        /// <param name ="applicationArmMetadataUpdateDescription">The Arm metadata to be associated with a specific
         /// application</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for

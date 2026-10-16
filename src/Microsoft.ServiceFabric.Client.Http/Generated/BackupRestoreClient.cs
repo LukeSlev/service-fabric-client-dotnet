@@ -45,13 +45,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies/$/Create";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             validateConnection?.AddToQueryParameters(queryParams, $"ValidateConnection={validateConnection}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -85,12 +85,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/Delete";
             url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -115,14 +115,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -147,12 +147,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}";
             url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -180,14 +180,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/GetBackupEnabledEntities";
             url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -215,13 +215,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/Update";
             url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             validateConnection?.AddToQueryParameters(queryParams, $"ValidateConnection={validateConnection}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -257,12 +257,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/EnableBackup";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -297,12 +297,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/DisableBackup";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -343,14 +343,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/GetBackupConfigurationInfo";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -372,6 +372,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationId.ThrowIfNull(nameof(applicationId));
@@ -381,7 +382,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/GetBackups";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
@@ -389,9 +390,10 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -416,12 +418,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/SuspendBackup";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -446,12 +448,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Applications/{applicationId}/$/ResumeBackup";
             url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -478,12 +480,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/EnableBackup";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -518,12 +520,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/DisableBackup";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -564,14 +566,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetBackupConfigurationInfo";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -593,6 +595,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             serviceId.ThrowIfNull(nameof(serviceId));
@@ -602,7 +605,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/GetBackups";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
@@ -610,9 +613,10 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -637,12 +641,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/SuspendBackup";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -667,12 +671,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Services/{serviceId}/$/ResumeBackup";
             url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -699,12 +703,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/EnableBackup";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -739,12 +743,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/DisableBackup";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -782,12 +786,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetBackupConfigurationInfo";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -807,6 +811,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
             DateTime? endDateTimeFilter = default(DateTime?),
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             partitionId.ThrowIfNull(nameof(partitionId));
@@ -815,15 +820,16 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetBackups";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -848,12 +854,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/SuspendBackup";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -878,12 +884,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/ResumeBackup";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -910,13 +916,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/Backup";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             backupTimeout?.AddToQueryParameters(queryParams, $"BackupTimeout={backupTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -954,12 +960,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetBackupProgress";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -979,6 +985,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? latest = false,
             int? restoreTimeout = 10,
             long? serverTimeout = 60,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             partitionId.ThrowIfNull(nameof(partitionId));
@@ -987,14 +994,15 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/Restore";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -1033,13 +1041,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/SkipAutoRestore";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=9.1");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -1064,12 +1072,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "Partitions/{partitionId}/$/GetRestoreProgress";
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -1096,14 +1104,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/$/GetBackups";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {

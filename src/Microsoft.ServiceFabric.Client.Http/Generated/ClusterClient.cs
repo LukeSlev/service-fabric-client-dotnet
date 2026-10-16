@@ -42,12 +42,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterManifest";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -74,7 +74,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterHealth";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             nodesHealthStateFilter?.AddToQueryParameters(queryParams, $"NodesHealthStateFilter={nodesHealthStateFilter}");
             applicationsHealthStateFilter?.AddToQueryParameters(queryParams, $"ApplicationsHealthStateFilter={applicationsHealthStateFilter}");
@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -112,7 +112,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterHealth";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             nodesHealthStateFilter?.AddToQueryParameters(queryParams, $"NodesHealthStateFilter={nodesHealthStateFilter}");
             applicationsHealthStateFilter?.AddToQueryParameters(queryParams, $"ApplicationsHealthStateFilter={applicationsHealthStateFilter}");
@@ -122,7 +122,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -157,12 +157,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterHealthChunk";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -185,12 +185,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterHealthChunk";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -228,13 +228,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/ReportClusterHealth";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             immediate?.AddToQueryParameters(queryParams, $"Immediate={immediate}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -266,13 +266,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetProvisionedCodeVersions";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             codeVersion?.AddToQueryParameters(queryParams, $"CodeVersion={codeVersion}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -295,13 +295,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetProvisionedConfigVersions";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             configVersion?.AddToQueryParameters(queryParams, $"ConfigVersion={configVersion}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -323,12 +323,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetUpgradeProgress";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -352,13 +352,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterConfiguration";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             configurationApiVersion?.AddToQueryParameters(queryParams, $"ConfigurationApiVersion={configurationApiVersion}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -380,12 +380,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterConfigurationUpgradeStatus";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -407,12 +407,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetUpgradeOrchestrationServiceState";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -436,12 +436,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/SetUpgradeOrchestrationServiceState";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -474,12 +474,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/Provision";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -512,12 +512,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/Unprovision";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -548,12 +548,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/RollbackUpgrade";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -577,12 +577,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/MoveToNextUpgradeDomain";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -615,12 +615,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/Upgrade";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -653,12 +653,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/StartClusterConfigurationUpgrade";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -691,12 +691,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/UpdateUpgrade";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -727,12 +727,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetAadMetadata";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -754,12 +754,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetClusterVersion";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -773,6 +773,33 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
+        public Task<FailoverManagerManagerInformation> GetFailoverManagerManagerInformationAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/GetFailoverManagerManagerInformation";
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.4");
+            url += "?" + string.Join("&", queryParams);
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, FailoverManagerManagerInformationConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
         public Task<ClusterLoadInfo> GetClusterLoadAsync(
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -781,12 +808,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/GetLoadInformation";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -810,13 +837,84 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/ToggleVerboseServicePlacementHealthReporting";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             enabled?.AddToQueryParameters(queryParams, $"Enabled={enabled}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
-            
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task ClearImpactObjectsAsync(
+            ImpactSelector impactSelector,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            impactSelector.ThrowIfNull(nameof(impactSelector));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/ClearImpactObjects";
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.5");
+            url += "?" + string.Join("&", queryParams);
+
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ImpactSelectorConverter.Serialize(new JsonTextWriter(sw), impactSelector);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task InvokeImpactActionAsync(
+            Guid? impactId,
+            ImpactActionKind? impactAction,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            impactId.ThrowIfNull(nameof(impactId));
+            impactAction.ThrowIfNull(nameof(impactAction));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/InvokeImpactAction";
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            impactId?.AddToQueryParameters(queryParams, $"ImpactId={impactId.ToString()}");
+            impactAction?.AddToQueryParameters(queryParams, $"ImpactAction={impactAction.ToString()}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=11.5");
+            url += "?" + string.Join("&", queryParams);
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -840,12 +938,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "$/ValidateUpgrade";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=8.2");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {

@@ -120,8 +120,8 @@ Build the Framework solution directly rather than using the repository build scr
 msbuild .\src\Microsoft.ServiceFabric.Client.Http.FX.sln /t:Build /p:Configuration=Debug
 ```
 
-The fork currently targets .NET Framework 4.6.2. The changed production files are already
-included in the FX projects; no generated-file includes or framework retargeting are needed.
+The fork currently targets .NET Framework 4.6.2. Production files, including the new Swagger
+models and converters, are explicitly included in the FX projects; no framework retargeting is needed.
 Outputs are in `src\Microsoft.ServiceFabric.Client.Http\bin\Debug`.
 
 The certificate regression executable requires .NET Framework 4.8 for in-memory certificate
@@ -138,6 +138,45 @@ msbuild .\tests\CertificateValidation\CertificateValidation.csproj /t:Build /p:C
 The tests cover direct issuer and root pins, partial chains above a pinned issuer, wrong names/pins,
 signature and validity failures, CA/usage constraints, revocation error combinations,
 default behavior, settings refresh, and the Framework HTTP handler's authentication callback.
+
+#### Swagger 11.3.0 refresh
+
+The generated client, HTTP client, common models, and PowerShell cmdlets were imported from
+the Swagger 11.3.0 build. `ApplicationTypeInfo.ManagedKeyVaultReferenceParameterList` now
+matches the runtime JSON property name. Update callers of the former
+`ManagedKeyVaultReferenceParameters` property (and the constructor's former
+`managedKeyVaultReferenceParameters` named argument) to the new `...ParameterList` names.
+Only the corrected runtime name is emitted by the serializer.
+
+This is a full generated refresh, not only a property rename. It also brings backup validation,
+service enable/disable, replica restore, self-reconfiguration, and impact-management APIs.
+Service creation/update models now use `ServiceTags` instead of separate
+`TagsRequiredToPlace`/`TagsRequiredToRun` properties. Rebuild consumers against the updated
+assemblies and deploy Common, Client, and Client.Http together.
+
+The fork's public model setters required by the separate Framework converter assembly are
+preserved. Existing Mesh Gateway APIs, formatting, and help are retained even though they
+are absent from this generator output. These fork-specific adjustments must be preserved
+when importing future generated builds.
+The generated New/Update service cmdlets also require constructing `ServiceTags` from their
+flattened tag parameters before constructing the service description; leave it absent when
+no tag parameters are supplied.
+
+Run the dependency-free Swagger regression executable against the actual Framework client:
+
+```powershell
+msbuild .\tests\SwaggerValidation\SwaggerValidation.csproj /t:Build /p:Configuration=Debug
+.\tests\SwaggerValidation\bin\Debug\SwaggerValidation.exe
+```
+
+It exercises both application-type listing paths through an in-memory HTTP handler, checks
+reference values and pagination, covers absent/null/empty lists, and verifies the serialized
+wire name and preservation of default application parameters. No cluster is required.
+
+With a built PowerShell module and its dependencies in the same directory, run
+`tests\SwaggerValidation\Test-ServiceTags.ps1 -ModulePath <module-dll-path>` in Windows
+PowerShell. Its 12 in-memory HTTP checks cover populated, omitted, and explicitly empty tags
+for stateful/stateless service creation and updates.
 
 ### Connecting to cluster secured with Azure Active Directory
 There are different ways to connect to the cluster secured with Azure Active Directory depending on if you have the AAD metadata(authority, resource, clientId) to get the token from Azure Active Directory. If you have the AAD metadata, use the option 1 below, if you don't have the AAD metadata, use the option 2 below.
